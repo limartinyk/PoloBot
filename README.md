@@ -44,3 +44,17 @@ stop losses in crisis
 ##### Long term:  
 
 machine learning trading lol
+
+##### USAGE:
+
+to use either bot on the market:  
+- uncomment the lines that actually make trades in the decision making part of the code
+- change startTime to False
+- change endTime to False  
+
+to test either bot on historical data:
+- comment out the lines that make trades in decision making section
+- specify startTime using unix timestamp
+- specify endTime using unix timestamp
+
+https://www.unixtimestamp.com/
