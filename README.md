@@ -22,8 +22,9 @@ make trades
 
 BOT STOPS WHENEVER THERE IS A POTENTIAL ERROR
 
-Trader is bot with historical testing
-trader-returns assumes input of 1 bitcoin and returns resulting bitcoin from trading decisions
+Trader.py is bot with historical testing
+
+Trader-returns.py assumes input of 1 bitcoin and returns resulting bitcoin from trading decisions
 at bottom, prints btc resulting from using bot, btc from holding btc, and btc from holding opposing currency
 
 
