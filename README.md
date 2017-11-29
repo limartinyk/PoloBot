@@ -1,8 +1,6 @@
 # PoloBot
 
-About the bot:
-
-Trading Strategy:
+##### SMA Trading Strategy:
 
 When price on chart drops below the moving average, potential buy position.  
 when price starts increasing again, enter long position  
@@ -11,6 +9,8 @@ when price starts decreasing, exit long position
 When price on chart rises above the moving average, potential sell position.  
 When price starts decreasing, enter short position  
 when price starts increasing, exit short position  
+
+Known that this strategy is awful
 
 ##### Bare minimum bot components:  
 - feedback to command line as trades happen or something
