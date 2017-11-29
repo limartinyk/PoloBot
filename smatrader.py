@@ -88,8 +88,6 @@ def main():
                         #cancels unfulfilled order
                     tradePlaced = False
                     typeOfTrade = False
-        else:
-            previousPrice = 0
 
         #feedback to user
         print("%s Period: %ss %s: %s Moving Average: %s" % (dataDate,period,pair,lastPairPrice,currentMovingAverage))
