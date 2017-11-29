@@ -32,6 +32,8 @@ prints btc resulting from using bot, btc from holding btc, and btc from holding 
 
 Testfile.py was used to test functions
 
+gdaxapidatacollector.py writes to historical_data.csv using gdax api, the bot was originally meant to trade on gdax. File can be customized to get data from CoinMarketCap for use for backtesting.
+
 
 ##### Potential additions:
 
