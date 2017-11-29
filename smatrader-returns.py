@@ -113,8 +113,6 @@ def main():
                     if (startTime and historicalData):
                         accVal = accVal * (lastPairPrice/longprice)
                         print(accVal)
-        else:
-            previousPrice = 0
 
         #feedback to user
         print("%s Period: %ss %s: %s Moving Average: %s" % (dataDate,period,pair,lastPairPrice,currentMovingAverage))
