@@ -57,4 +57,10 @@ to test either bot on historical data:
 - specify startTime using unix timestamp
 - specify endTime using unix timestamp
 
+smatrader-returns.py  
+- specify in accVal what initial BTC input is for historical testing
+- bot third to last line outputs ending account value if using strategy
+- bot second to last line outputs ending account value if holding btc without trading
+- bot third to last line outputs ending account value (in BTC) if holding opposing currency of btc-curr pair without trading
+
 https://www.unixtimestamp.com/
