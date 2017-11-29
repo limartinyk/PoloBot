@@ -47,7 +47,14 @@ machine learning trading lol
 
 ##### USAGE:
 
-to use either bot on the market:  
+both bots:
+- period between code being run is customizable
+- pair of currencies is customizable between all available btc-curr pairs on poloniex, 
+can be modified to trade multiply pairs at once
+- length of trailing moving average can be specified
+
+to use either bot on the market:
+- input apikey and secret for poloniex account
 - uncomment the lines that actually make trades in the decision making part of the code
 - change startTime to False
 - change endTime to False  
@@ -57,7 +64,7 @@ to test either bot on historical data:
 - specify startTime using unix timestamp
 - specify endTime using unix timestamp
 
-smatrader-returns.py  
+smatrader-returns.py
 - specify in accVal what initial BTC input is for historical testing
 - bot third to last line outputs ending account value if using strategy
 - bot second to last line outputs ending account value if holding btc without trading
