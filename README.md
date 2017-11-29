@@ -23,6 +23,8 @@ BOT STOPS WHENEVER THERE IS A POTENTIAL ERROR
 
 ##### Files
 
+poloniex.py is wrapper for use with poloniex trading api  
+
 SMATrader.py is bot with historical testing using SMA
 
 SMATrader-returns.py assumes input of 1 bitcoin and returns resulting bitcoin from trading decisions at bottom, 
