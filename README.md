@@ -73,3 +73,17 @@ smatrader-returns.py
 - bot third to last line outputs ending account value (in BTC) if holding opposing currency of btc-curr pair without trading
 
 https://www.unixtimestamp.com/
+
+
+
+
+
+
+
+
+
+ARBITRAGER BOT
+
+Arbitrager.py arbitrages between three currency pairs on poloniex. The given file arbitrages between Bitcoin, Stellar Lumens, and Monero. The logic is explained in comments within the file.
+
+The code runs perfectly if you enter in your account information. Note that poloniex gives fee discounts to high volume arbitragers, so the threshold for profitability will never be reached unless you are a high volume arbitrager.
