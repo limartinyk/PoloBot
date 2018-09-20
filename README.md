@@ -1,5 +1,7 @@
 # PoloBot
 
+!! I did not how to use git at this time !! This was my first project!
+
 ##### SMA Trading Strategy:
 
 When price on chart drops below the moving average, potential buy position.  
