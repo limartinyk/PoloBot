@@ -9,7 +9,7 @@ def main():
     period = .5 #how often program runs in seconds
 
     #pairtrio = btc, xmr, zec
-    #follow naming standard pair1, pair 2, pair1pair2 or IT WILL FUCK UP
+    #follow naming standard pair1, pair 2, pair1pair2
     BTCpair1 = "USDT_BTC"
     BTCpair2 = "USDT_STR"
     pair1pair2 = "BTC_STR"

@@ -57,10 +57,10 @@ class poloniex:
     def return24Volume(self):
         return self.api_query("return24Volume")
 
-    def returnOrderBook (self, currencyPair):
+    def returnOrderBook(self, currencyPair):
         return self.api_query("returnOrderBook", {'currencyPair': currencyPair})
 
-    def returnMarketTradeHistory (self, currencyPair):
+    def returnMarketTradeHistory(self, currencyPair):
         return self.api_query("returnMarketTradeHistory", {'currencyPair': currencyPair})
 
 

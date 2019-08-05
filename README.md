@@ -1,8 +1,23 @@
 # PoloBot
 
-!! I did not how to use git at this time !! This was my first project!
+SMATrader.py trades using the SMA trading strategy described below. It can also be run in a trial mode where it assumes an initial wallet of 1 BTC, and prints the amount that your BTC changes as a result of running the bot, at every time step, showing the profit/loss when using the SMA strategy, and the profit/loss when holding BTC or the opposing currency
+
+Arbitrager.py arbitrages between three currency pairs on Poloniex. The given file arbitrages between Bitcoin, Stellar Lumens, and USDT
+
+Gdaxapidatacollector.py writes to a csv file using GDAX's api, which is another cryptocurrency trading platform. Originally, I meant for the other bots to trade on GDAX, which is why I made this. The file can also be customized to get data from CoinMarketCap.com
+
+Poloniex.py is the wrapper for use with Poloniex's trading api
+
+##### Trading Bot Features
+
+- feedback to command line as events happen
+- connect to api and request information
+- calculate moving average as it is running using real-time data
+- connect to api and make trades
 
 ##### SMA Trading Strategy:
+
+The SMATrader bot uses this following strategy:
 
 When price on chart drops below the moving average, potential buy position.  
 when price starts increasing again, enter long position  
@@ -10,82 +25,24 @@ when price starts decreasing, exit long position
 
 When price on chart rises above the moving average, potential sell position.  
 When price starts decreasing, enter short position  
-when price starts increasing, exit short position  
+when price starts increasing, exit short position
 
-Known that this strategy is awful
+I chose this trading strategy for its simple implementation, and not for it's ability to succeed.
 
-##### Bare minimum bot components:  
-- feedback to command line as trades happen or something
-- connect to api
-- calculate moving average as it goes
-- backtest data for testing purposes
-- make trades
+##### Using the Bots:
 
-BOT STOPS WHENEVER THERE IS A POTENTIAL ERROR
+Customize:
+- Period in which the bots check for potential actions
+- Currencies being traded
+- Length of trailing moving average used in the SMA strategy
 
-##### Files
+Using on the Market
+- Input apikey and secret for poloniex account in poloniex.py
+- Uncomment the lines that actually make trades in the decision making part of the bot
+- Change startTime to False
+- Change endTime to False  
 
-poloniex.py is wrapper for use with poloniex trading api  
-
-SMATrader.py is bot with historical testing using SMA
-
-SMATrader-returns.py assumes input of 1 bitcoin and returns resulting bitcoin from trading decisions at bottom, 
-prints btc resulting from using bot, btc from holding btc, and btc from holding opposing currency
-
-Testfile.py was used to test functions
-
-gdaxapidatacollector.py writes to historical_data.csv using gdax api, the bot was originally meant to trade on gdax. File can be customized to get data from CoinMarketCap for use for backtesting.
-
-
-##### Potential additions:
-
-secondary, shorter period moving average, look at when moving averages cross over  
-example: 5 8 13 day triple moving average, common technical analysis, 13 day is general trend, 8 is medium, 5 is short term, when they cross gives different indications for trading
-
-stop losses in crisis
-
-
-##### Long term:  
-
-machine learning trading lol
-
-##### USAGE:
-
-both bots:
-- period between code being run is customizable
-- pair of currencies is customizable between all available btc-curr pairs on poloniex, 
-can be modified to trade multiply pairs at once
-- length of trailing moving average can be specified
-
-to use either bot on the market:
-- input apikey and secret for poloniex account
-- uncomment the lines that actually make trades in the decision making part of the code
-- change startTime to False
-- change endTime to False  
-
-to test either bot on historical data:
-- comment out the lines that make trades in decision making section
-- specify startTime using unix timestamp
-- specify endTime using unix timestamp
-
-smatrader-returns.py
-- specify in accVal what initial BTC input is for historical testing
-- bot third to last line outputs ending account value if using strategy
-- bot second to last line outputs ending account value if holding btc without trading
-- bot third to last line outputs ending account value (in BTC) if holding opposing currency of btc-curr pair without trading
-
-https://www.unixtimestamp.com/
-
-
-
-
-
-
-
-
-
-ARBITRAGER BOT
-
-Arbitrager.py arbitrages between three currency pairs on poloniex. The given file arbitrages between Bitcoin, Stellar Lumens, and Monero. The logic is explained in comments within the file.
-
-The code runs perfectly if you enter in your account information. Note that poloniex gives fee discounts to high volume arbitragers, so the threshold for profitability will never be reached unless you are a high volume arbitrager.
+Trial run:
+- Comment out the lines that make trades in decision making section
+- Specify startTime using unix timestamp
+- Specify endTime using unix timestamp

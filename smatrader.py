@@ -19,11 +19,15 @@ def main():
 
     startTime = 1511867800 #set to a value in seconds if using historical data, False if real-time
     endTime = 1511911000 #False if real-time, value in seconds if historical data
+    accVal = 1 #starting bitcoin for historical value testing purposes
     historicalData = False
+    firstVal = False #if firstval from historical testing hasn't been reached
+    startingBTC = False
     tradePlaced = False
     typeOfTrade = False
     dataDate = ""
     orderNumber = ""
+
 
     #connecting to polo api
     connect = poloniex('API key', 'Secret') #plug in API key and secret for account
@@ -37,8 +41,19 @@ def main():
             if bool(historicalData): #empty lists evaluate to False
                 nextDataPoint = historicalData.pop(0) #starting from oldest data
                 lastPairPrice = nextDataPoint['weightedAverage']
+                if (not firstVal): #stores the first price of the time span
+                    startingBTC = accVal
+                    firstVal = lastPairPrice
                 dataDate = datetime.datetime.fromtimestamp(int(nextDataPoint['date'])).strftime('%Y-%m-%d %H:%M:%S')
-        elif (startTime and not historicalData): #if no historical data is provided
+        elif (startTime and not historicalData): #if historical data is exhausted
+            if tradePlaced:
+                if typeOfTrade == "short":
+                    accVal = accVal * (shortprice/lastPairPrice)
+                else:
+                    accVal = accVal * (lastPairPrice/longprice)
+            print("With bot: %s" % (accVal))
+            print("Holding BTC: %s" % (startingBTC))
+            print("Holding Opponent Pair: %s" % ((lastPairPrice/firstVal)*startingBTC))
             exit()
         else:#if not trading with historical data
             currentValues = connect.api_query("returnTicker")
@@ -60,12 +75,16 @@ def main():
                     # orderNumber = connect.sell(pair,lastPairPrice,.01) UNCOMMENT WHEN ACTUALLY TRADING
                     tradePlaced = True
                     typeOfTrade = "short"
+                    if (startTime and historicalData):
+                        shortprice = lastPairPrice
                 #if price goes below moving avg then increases, buy order
                 elif ((lastPairPrice < currentMovingAverage) and (lastPairPrice > previousPrice)):
                     print("BUY ORDER")
                     # orderNumber = connect.buy(pair,lastPairPrice,.01) UNCOMMENT WHEN ACTUALLY TRADING
                     tradePlaced = True
                     typeOfTrade = "long"
+                    if (startTime and historicalData):
+                        longprice = lastPairPrice
             #if in position and price crosses over moving avg again, exit position
             elif (typeOfTrade == "short"):
                 if (lastPairPrice < currentMovingAverage):
@@ -77,6 +96,9 @@ def main():
                         # cancels unfulfilled order
                     tradePlaced = False
                     typeOfTrade = False
+                    if (startTime and historicalData):
+                        accVal = accVal * (shortprice/lastPairPrice)
+                        print(accVal)
             #if in position and price crosses over moving avg again, exit position
             elif (typeOfTrade == "long"):
                 if (lastPairPrice > currentMovingAverage):
@@ -88,6 +110,9 @@ def main():
                         #cancels unfulfilled order
                     tradePlaced = False
                     typeOfTrade = False
+                    if (startTime and historicalData):
+                        accVal = accVal * (lastPairPrice/longprice)
+                        print(accVal)
 
         #feedback to user
         print("%s Period: %ss %s: %s Moving Average: %s" % (dataDate,period,pair,lastPairPrice,currentMovingAverage))
